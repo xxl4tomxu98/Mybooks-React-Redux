@@ -15,9 +15,11 @@ const publicationYear = check('publicationYear').notEmpty();
 const description = check('description').notEmpty();
 const genre = check('genre').notEmpty().isIn(genres);
 
-router.get('/', authenticated, asyncHandler(async function(_req, res) {
-  const books = await BookRepository.list();
-  res.json(books);
+router.get('/',
+  authenticated,
+  asyncHandler(async function(_req, res) {
+    const books = await BookRepository.list();
+    res.json(books);
 }));
 
 const errorFormatter = ({ msg, param }) => {

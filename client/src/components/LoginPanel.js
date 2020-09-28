@@ -26,7 +26,6 @@ export class LoginPanel extends Component {
 
   async handleSubmit(e) {
       e.preventDefault();
-      debugger;
       this.props.login(this.state.email, this.state.password)
     }
 

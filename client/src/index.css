@@ -9,3 +9,47 @@
 .middled {
   align-items: center;
 }
+
+.fab {
+  align-items: center;
+  background-color: orange;
+  border-radius: 50px;
+  bottom: 30px;
+  box-shadow: 0 4px 6px rgb(0, 0, 0, 0.2);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  position: fixed;
+  left: 200px;
+  height: 50px;
+  width: 50px;
+  transition: box-shadow 0.5s, transform 0.25s;
+  zoom: 1;
+}
+
+.fab.is-hidden {
+  transform: scale(0);
+}
+
+.fab:hover {
+  box-shadow: 0 6px 8px rgb(0, 0, 0, 0.3);
+}
+
+.fab span {
+  transition: transform 0.5s;
+}
+
+.fab:active span {
+  transform: rotate(360deg);
+}
+
+
+.primary-text {
+  font-size: 1.3em;
+}
+
+.secondary-text {
+  font-size: 0.8em;
+  color: #999;
+}

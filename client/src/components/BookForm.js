@@ -22,7 +22,9 @@ class BookForm extends Component {
   }
 
   async componentDidMount() {
+    console.log("mount");
     const genres = await this.props.getGenres();
+    console.log(genres)
     if (genres.length) this.setState({ genre: genres[0] });
   }
 
@@ -71,10 +73,10 @@ class BookForm extends Component {
             placeholder="Description"
             value={this.state.description}
             onChange={this.updateDescription} />
-          <input type="text"
+          {/* <input type="text"
             placeholder="Genre"
             value={this.state.genre}
-            onChange={this.updateGenre} />
+            onChange={this.updateGenre} /> */}
           <select onChange={this.updateGenre}>
             {this.props.genres.map(genre =>
               <option key={genre}>{genre}</option>
@@ -89,8 +91,8 @@ class BookForm extends Component {
 
 const mapStateToProps = state => {
   return {
-    genres: state.books.gneres,
-    errors: state.books.errors,
+    genres: state.book.genres,
+    errors: state.book.errors,
   }
 }
 const mapDispatchToProps = dispatch => ({

@@ -1,5 +1,5 @@
 
-const { book } = require('./models');
+const { Book } = require('./models');
 
 
 async function create(details, owner) {

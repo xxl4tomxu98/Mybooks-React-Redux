@@ -18,11 +18,13 @@ const password =
     .withMessage('Please provide a password');
 
 router.put('/', [email, password], asyncHandler(async (req, res, next) => {
+
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return next({ status: 422, errors: errors.array() });
   }
   const { email, password } = req.body;
+
   const user = await UserRepository.findByEmail(email);
 
   if (!user.isValidPassword(password)) {
@@ -32,7 +34,9 @@ router.put('/', [email, password], asyncHandler(async (req, res, next) => {
     err.errors = ['Invalid credentials'];
     return next(err);
   }
+
   const { jti, token } = generateToken(user);
+
   user.tokenId = jti;
   await user.save();
   res.cookie('token', token);

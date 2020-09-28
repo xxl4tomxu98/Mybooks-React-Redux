@@ -104,7 +104,7 @@ export default function reducer (state=initialState, action) {
     case LOAD_DETAIL:
       return { ...state, detail: action.detail };
     case LOAD_GENRES:
-      return { ...state, types: action.genres };
+      return { ...state, genres: action.genres };
     case FORM_ERRORS:
       return { ...state, errors: action.errors };
     default:

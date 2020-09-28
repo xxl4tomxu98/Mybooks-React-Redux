@@ -53,6 +53,10 @@ app.use((err, req, res, next) => {
     err.errors = err.errors.map((e) => e.message);
     err.title = "Sequelize Error";
   }
+  console.log(err.message);
+  if(err.status===401) {
+    next(err);
+  }
   err.status = 422;
   next(err);
 });

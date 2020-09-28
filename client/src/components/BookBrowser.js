@@ -15,8 +15,9 @@ class BookBrowser extends Component {
     };
   }
 
-  componentDidMount = () => this.props.getBooks()
-
+  componentDidMount = () => {
+    this.props.getBooks()
+  }
 
   handleCreated = (book) => {
     this.setState({
@@ -50,7 +51,7 @@ class BookBrowser extends Component {
                   </div> */}
                   <div>
                     <div className="primary-text">{book.title}</div>
-                    <div className="secondary-text">Published: {book.publicationYear}</div>
+                    <div className="secondary-text">Author: {book.author}</div>
                   </div>
                 </div>
               </NavLink>
@@ -70,11 +71,11 @@ class BookBrowser extends Component {
 
 const mapStateToProps = state => {
     return {
-      books: state.books.list
+      books: state.book.list
     }
 }
 const mapDispatchToProps = dispatch => ({
-    getPokemon: (books) => dispatch(getBooks(books))
+    getBooks: (books) => dispatch(getBooks(books))
 })
 
 

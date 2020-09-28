@@ -32,6 +32,7 @@ class BookDetail extends Component {
   }
 
   render() {
+
     const book = this.state.book;
     if (!book) {
       return null;
@@ -69,7 +70,7 @@ class BookDetail extends Component {
 
 const mapStateToProps = state => {
   return {
-    detail: state.books.detail
+    detail: state.book.detail
   }
 }
 const mapDispatchToProps = dispatch => ({

@@ -14,7 +14,7 @@ async function create(details) {
 }
 
 async function findByEmail(email) {
-  const user = await User.findOne({ where: { email } });
+  const user = await User.unscoped().findOne({ where: { email } });
   return user || new NullUser();
 }
 
