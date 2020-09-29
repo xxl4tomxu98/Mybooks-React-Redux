@@ -50,7 +50,7 @@ class BookForm extends Component {
 
   render() {
     return (
-      <section className="new-form-holder centered middled">
+      <section className="container__book-info new-form-holder centered middled">
         <form onSubmit={this.handleSubmit}>
           <ul>{this.renderErrors()}</ul>
           <input type="text"

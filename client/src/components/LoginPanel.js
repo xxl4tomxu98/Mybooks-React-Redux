@@ -71,19 +71,19 @@ export class LoginPanel extends Component {
             </form>
           </div>
           <div className="quote-generator-container">
-            <img className="quote-generator-img" src="./public/images/ghandi.jpg" alt="" />
+            <img className="quote-generator-img" src="./images/ghandi.jpg" alt="" />
             <p className="quote-generator-quote"> {this.ghandiQuotes[this.randomNumGen()] + '   -Ghandi'} </p>
           </div>
           <div className="discover-container">
             <p> Discover... </p>
             <div className="book-image-container">
-              <img className="book-image__1" src="./public/images/1.jpg" alt=""/>
+              <img className="book-image__1" src="./images/1.jpg" alt=""/>
             </div>
             <div className="book-image-container">
-              <img className="book-image__2" src="./public/images/2.jpg" alt=""/>
+              <img className="book-image__2" src="./images/2.jpg" alt=""/>
             </div>
             <div className="book-image-container">
-              <img className="book-image__3" src="./public/images/3.jpg" alt=""/>
+              <img className="book-image__3" src="./images/3.jpg" alt=""/>
             </div>
           </div>
         </>

@@ -18,12 +18,12 @@ async function one(id) {
   const book = await Book.findByPk(id, {
     include: [ 'user' ]
   });
-
   return {
     title: book.title,
     author: book.author,
     description: book.description,
     publicationYear: book.publicationYear,
+    genre: book.genre,
     owner: {
       id: book.user.id,
       username: book.user.username,

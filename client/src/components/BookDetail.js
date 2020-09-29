@@ -38,31 +38,28 @@ class BookDetail extends Component {
       return null;
     }
     return (
-      <div className="pokemon-detail">
-        <div className={`pokemon-detail-image-background`} >
-          {/* <div className="pokemon-detail-image"
-               style={{backgroundImage: `url('${book.imageUrl}')`}}>
-          </div> */}
-          <h1 className="bigger">{book.title}</h1>
+      <div className="container__book-info">
+        <h1 className="bookpage-container__book-info__description">{book.title}</h1>
+
+        <div>
+          <h2>Information</h2>
+          <ul className="bookpage-container__book-info__author">
+            <li ><b>Author</b> {book.author}</li>
+            <li><b>Description</b> {book.description}</li>
+            <li><b>Published</b> {book.publicationYear}</li>
+            <li><b>Genre</b> {book.genre}</li>
+            <li><b>Owner Name</b> {book.owner.username}</li>
+            {/* <li>
+              <b>Reviews</b>
+              <ul>
+                {book.reviews.map(review =>
+                  <li key={review}>{review}</li>
+                )}
+              </ul>
+            </li> */}
+          </ul>
         </div>
-        <div className="pokemon-detail-lists">
-          <div>
-            <h2>Information</h2>
-            <ul>
-              <li><b>Author</b> {book.author}</li>
-              <li><b>Description</b> {book.description}</li>
-              <li><b>Published</b> {book.publicationYear}</li>
-              {/* <li>
-                <b>Reviews</b>
-                <ul>
-                  {book.reviews.map(review =>
-                    <li key={review}>{review}</li>
-                  )}
-                </ul>
-              </li> */}
-            </ul>
-          </div>
-        </div>
+
       </div>
     )
   }
@@ -70,7 +67,8 @@ class BookDetail extends Component {
 
 const mapStateToProps = state => {
   return {
-    detail: state.book.detail
+    detail: state.book.detail,
+    genre: state.book.genre,
   }
 }
 const mapDispatchToProps = dispatch => ({

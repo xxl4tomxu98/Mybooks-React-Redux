@@ -38,7 +38,7 @@ class BookBrowser extends Component {
       return null;
     }
     return (
-      <main>
+      <main className='book-container'>
         <LogoutButton />
         <nav>
           <Fab hidden={this.state.showForm} onClick={this.showForm} />
@@ -46,12 +46,12 @@ class BookBrowser extends Component {
             return (
               <NavLink key={book.title} to={`/books/${book.id}`}>
                 <div className={bookId === book.id ? 'nav-entry is-selected' : 'nav-entry'}>
-                  {/* <div className="nav-entry-image"
-                       style={{backgroundImage: `url('${book.imageUrl}')`}}>
-                  </div> */}
+                  <div className="container__book-cover book-cover">
+                    <img className='container__book-image' src={`./images/${book.id}.jpg`} alt="bookshelf"/>
+                  </div>
                   <div>
-                    <div className="primary-text">{book.title}</div>
-                    <div className="secondary-text">Author: {book.author}</div>
+                    <div className='container__genres h4'>{book.title}</div>
+                    <div className='bookpage-container__book-info__author'>Author: {book.author}</div>
                   </div>
                 </div>
               </NavLink>
@@ -61,7 +61,7 @@ class BookBrowser extends Component {
         { this.state.showForm ?
           <BookForm handleCreated={this.handleCreated} /> :
           <Route path="/books/:id" render={props =>
-            <BookDetail  {...props}/>
+            <BookDetail  {...props} />
           } />
         }
       </main>

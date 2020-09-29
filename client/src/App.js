@@ -14,22 +14,21 @@ class App extends React.Component {
       <BrowserRouter>
         <nav>
           <ul>
-
             <li><NavLink to="/signup" activeclass="active">Register</NavLink></li>
             <li><NavLink to="/users" activeclass="active">Users</NavLink></li>
           </ul>
         </nav>
         <Switch>
           <AuthRoute path="/signup"
-                        exact={true}
-                        needLogin={this.props.needSignup}
-                        component={SignupForm}
-                        />
+              exact={true}
+              needLogin={this.props.needSignup}
+              component={SignupForm}
+              />
           <AuthRoute path="/login"
-                        exact={true}
-                        needLogin={this.props.needLogin}
-                        component={LoginPanel}
-                        />
+              exact={true}
+              needLogin={this.props.needLogin}
+              component={LoginPanel}
+              />
           <Route path="/users">
                 <UserList />
           </Route>
