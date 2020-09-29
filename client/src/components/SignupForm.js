@@ -40,23 +40,29 @@ export class SignupForm extends Component {
       return <Redirect to='/'/>
     }
     return (
-      <main className="centered middled">
+      <main className="signup-container">
+        <div className="login-errors-container"/>
+        <div className="signup-errors-container"/>
+        <h6> New here? Create a free account! </h6>
         <form onSubmit={this.registerUser}>
           <input type="text"
                 placeholder="Username"
                 name="username"
                 value={this.state.username}
-                onChange={this.updateUsername} />
+                onChange={this.updateUsername}
+                className="input signup-form__username form-control" />
           <input type="email"
                 placeholder="Email"
                 name="email"
                 value={this.state.email}
-                onChange={this.updateEmail} />
+                onChange={this.updateEmail}
+                className="input signup-form__email form-control" />
           <input type="password"
                 placeholder="Password"
                 name="password"
                 value={this.state.password}
-                onChange={this.updatePassword} />
+                onChange={this.updatePassword}
+                className="input signup-form__password form-control" />
           <button type="submit">Signup</button>
         </form>
       </main>

@@ -14,16 +14,15 @@ class App extends React.Component {
       <BrowserRouter>
         <nav>
           <ul>
-            <li><NavLink to="/" activeclass="active">Home</NavLink></li>
+
             <li><NavLink to="/signup" activeclass="active">Register</NavLink></li>
-            <li><NavLink to="/login" activeclass="active">Login</NavLink></li>
             <li><NavLink to="/users" activeclass="active">Users</NavLink></li>
           </ul>
         </nav>
         <Switch>
           <AuthRoute path="/signup"
                         exact={true}
-                        needLogin={this.props.needLogin}
+                        needLogin={this.props.needSignup}
                         component={SignupForm}
                         />
           <AuthRoute path="/login"
@@ -53,7 +52,8 @@ class App extends React.Component {
 const mapStateToProps = state => {
   return {
     currentUserId: state.authentication.id,
-    needLogin: !state.authentication.id
+    needLogin: !state.authentication.id,
+    needSignup: !state.authentication.username,
   }
 }
 
