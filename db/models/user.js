@@ -33,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
   {
     defaultScope: {
       attributes:{
-        exclude: ["hashedPassword", "email", "createdAt", "updatedAt"]
+        exclude: ["hashedPassword", "createdAt", "updatedAt"]
       }
     },
     scopes: {
@@ -93,8 +93,10 @@ module.exports = (sequelize, DataTypes) => {
     const user = await User.create({
       username,
       email,
-      hashedPassword
+      hashedPassword,
+      tokenId: null,
     });
+    console.log(user)
     return await User.getCurrentUserById(user.id);
   };
 

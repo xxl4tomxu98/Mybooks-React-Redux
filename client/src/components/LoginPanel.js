@@ -8,6 +8,7 @@ const mapStateToProps = state => {
     currentUserId: state.authentication.id,
   }
 }
+
 const mapDispatchToProps = dispatch => ({
   login: (email, password) => dispatch(login(email, password))
 })
@@ -40,12 +41,14 @@ export class LoginPanel extends Component {
       return (
         <main className="centered middled">
           <form onSubmit={this.handleSubmit}>
-            <input type="text"
+            <input type="email"
                   placeholder="Email"
+                  name="email"
                   value={this.state.email}
                   onChange={this.updateEmail} />
             <input type="password"
                   placeholder="Password"
+                  name="password"
                   value={this.state.password}
                   onChange={this.updatePassword} />
             <button type="submit">Login</button>

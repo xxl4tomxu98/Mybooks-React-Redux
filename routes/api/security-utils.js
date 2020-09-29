@@ -41,5 +41,4 @@ function restoreUser(req, res, next) {
 }
 
 const authenticated = [restoreUser];
-
 module.exports = { generateToken, authenticated };

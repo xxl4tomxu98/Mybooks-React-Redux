@@ -1,19 +1,11 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route, Redirect, NavLink } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import LoginPanel from './components/LoginPanel';
+import SignupForm from './components/SignupForm';
 import BookBrowser from './components/BookBrowser';
 import UserList from './components/UsersList';
-
-
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route {...rest} render={(props) => (
-    rest.needLogin === true
-      ? <Redirect to='/login' />
-      : <Component {...props}  />
-  )} />
-)
-
+import { PrivateRoute, AuthRoute } from "./routes";
 
 
 class App extends React.Component {
@@ -21,13 +13,24 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <nav>
-            <ul>
-                <li><NavLink to="/" activeclass="active">Home</NavLink></li>
-                <li><NavLink to="/users" activeclass="active">Users</NavLink></li>
-            </ul>
+          <ul>
+            <li><NavLink to="/" activeclass="active">Home</NavLink></li>
+            <li><NavLink to="/signup" activeclass="active">Register</NavLink></li>
+            <li><NavLink to="/login" activeclass="active">Login</NavLink></li>
+            <li><NavLink to="/users" activeclass="active">Users</NavLink></li>
+          </ul>
         </nav>
         <Switch>
-          <Route path="/login"  component={LoginPanel} />
+          <AuthRoute path="/signup"
+                        exact={true}
+                        needLogin={this.props.needLogin}
+                        component={SignupForm}
+                        />
+          <AuthRoute path="/login"
+                        exact={true}
+                        needLogin={this.props.needLogin}
+                        component={LoginPanel}
+                        />
           <Route path="/users">
                 <UserList />
           </Route>

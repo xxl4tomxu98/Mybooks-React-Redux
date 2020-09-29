@@ -18,6 +18,7 @@ const genres = [
   'Travel',
   'Western',
   'Women',
+  'Outdoors',
 ];
 
 module.exports = (sequelize, DataTypes) => {

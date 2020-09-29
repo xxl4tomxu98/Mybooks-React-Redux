@@ -6,7 +6,7 @@ class BookForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      auhtor: '',
+      author: '',
       title: '',
       genre:  '',
       description: '',
@@ -22,9 +22,7 @@ class BookForm extends Component {
   }
 
   async componentDidMount() {
-    console.log("mount");
     const genres = await this.props.getGenres();
-    console.log(genres)
     if (genres.length) this.setState({ genre: genres[0] });
   }
 
@@ -73,10 +71,10 @@ class BookForm extends Component {
             placeholder="Description"
             value={this.state.description}
             onChange={this.updateDescription} />
-          {/* <input type="text"
-            placeholder="Genre"
-            value={this.state.genre}
-            onChange={this.updateGenre} /> */}
+          <input type="text"
+            placeholder="Publication Year"
+            value={this.state.publicationYear}
+            onChange={this.updatePublicationYear} />
           <select onChange={this.updateGenre}>
             {this.props.genres.map(genre =>
               <option key={genre}>{genre}</option>
@@ -97,7 +95,7 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => ({
   getGenres: () => dispatch(getGenres()),
-  handleCreated: () => dispatch(createBook())
+  handleCreated: (payload) => dispatch(createBook(payload))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookForm);

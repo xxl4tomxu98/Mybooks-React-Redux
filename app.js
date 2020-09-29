@@ -20,7 +20,7 @@ app.use(cookieParser())
 
 
 // Security Middleware
-app.use(cors({ origin: true }));
+app.use(cors({ origin: "http://localhost:3000" }));
 app.use(helmet({ hsts: false }));
 // app.use(csurf({
 //   cookie: {

@@ -38,8 +38,7 @@ router.post('/', [
   if (!errors.isEmpty()) {
     return next({ status: 422, errors: errors.array() });
   }
-
-  const id = await BookRepository.create(req.body);
+  const id = await BookRepository.create(req.body, req.user);
   return res.json({ id });
 }));
 

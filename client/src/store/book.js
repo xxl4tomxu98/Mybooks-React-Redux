@@ -71,6 +71,7 @@ export const getGenres = () => async dispatch => {
 
 
 export const createBook = (book) => async dispatch => {
+  console.log(book);
   const res = await fetch('/api/books/', {
     method: "post",
     headers: {
@@ -78,6 +79,7 @@ export const createBook = (book) => async dispatch => {
     },
     body: JSON.stringify(book)
   });
+  console.log(res.ok);
   if (res.ok) {
     dispatch(getBooks());
     return res;
@@ -94,7 +96,8 @@ export const createBook = (book) => async dispatch => {
 
 
 const initialState = {
-  types: [],
+  genres: [],
+  errors: [],
 }
 
 export default function reducer (state=initialState, action) {

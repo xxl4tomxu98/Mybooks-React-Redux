@@ -54,10 +54,25 @@ export const login = (email, password) => {
   }
 }
 
+export const signup = (username, email, password) => {
+  return async dispatch => {
+    const res = await fetch('/api/session', {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({ username, email, password })
+    })
+    if(res.ok) {
+      const { user } = await res.json();
+      console.log(user);
+      dispatch(setUser(user))
+    }
+  }
+}
+
+
 export default function reducer(state=loadUser(), action){
   switch(action.type){
     case SET_USER:
-        // debugger;
         return action.user
     case REMOVE_USER:
         return {}
