@@ -30,8 +30,16 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {});
   Book.associate = function(models) {
+    const columnMapping = {
+      through: 'Book_Shelf',
+      otherKey: 'shelfId',
+      foreignKey: 'bookId',
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE'
+    };
     Book.belongsTo(models.User, { foreignKey: 'userId', as: 'user' });
     Book.hasMany(models.Review, {foreignKey: 'bookId', as: 'reviews'});
+    Book.belongsToMany(models.Shelf, columnMapping);
   };
   return Book;
 };
