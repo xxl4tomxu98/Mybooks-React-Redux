@@ -32,6 +32,12 @@ class BookBrowser extends Component {
     })
   }
 
+  hideForm = () => {
+    this.setState({
+      showForm: false,
+    });
+  };
+
   render() {
     const bookId = Number.parseInt(this.props.match.params.bookId);
     if (!this.props.books) {
@@ -58,11 +64,16 @@ class BookBrowser extends Component {
             );
           })}
         </nav>
-        { this.state.showForm ?
-          <BookForm handleCreated={this.handleCreated} /> :
-          <Route path="/books/:id" render={props =>
-            <BookDetail  {...props} />
-          } />
+        { this.state.showForm ? (
+            <BookForm
+            handleCreated={this.handleCreated}
+            hideForm={this.hideForm}
+            />
+          ) : (
+            <Route path="/books/:id" render={props =>
+              <BookDetail  {...props} />
+            } />
+          )
         }
       </main>
     );

@@ -12,12 +12,6 @@ class BookReview extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  async componentDidMount() {
-    await this.props.getReviews(this.props.bookId);
-  }
-
-
-
 
   updateReview = property => e => {
     this.setState({

@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getDetail } from '../store/book';
+import { getDetail, getReviews } from '../store/book';
 import BookReview from './BookReview';
+
 
 class BookDetail extends Component {
 
   async componentDidMount() {
     await this.props.getDetail(this.props.match.params.id);
+    await this.props.getReviews(this.props.match.params.id);
   }
 
   async componentDidUpdate(oldProps) {
@@ -16,6 +18,7 @@ class BookDetail extends Component {
       return;
     }
     await this.props.getDetail(newId);
+    await this.props.getReviews(newId);
   }
 
 
@@ -39,7 +42,9 @@ class BookDetail extends Component {
             <li><b>Owner Name</b> {detail.owner.username}</li>
           </ul>
         </div>
-        <BookReview bookId={this.props.match.params.id}/>
+        <div>
+          <BookReview bookId={this.props.match.params.id}  {...this.props} />
+        </div>
       </div>
     )
   }
@@ -51,7 +56,8 @@ const mapStateToProps = state => {
   }
 }
 const mapDispatchToProps = dispatch => ({
-  getDetail: (id) => dispatch(getDetail(id))
+  getDetail: (id) => dispatch(getDetail(id)),
+  getReviews: (id) => dispatch(getReviews(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookDetail);

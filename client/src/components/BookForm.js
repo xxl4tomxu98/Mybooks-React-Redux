@@ -81,6 +81,9 @@ class BookForm extends Component {
             )}
           </select>
           <button type="submit">Create New Book</button>
+          <button type="button" onClick={this.props.hideForm}>
+            Cancel
+          </button>
         </form>
       </section>
     );

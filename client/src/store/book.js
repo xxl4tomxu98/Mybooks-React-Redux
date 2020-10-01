@@ -57,7 +57,6 @@ export const getDetail = (id) => async dispatch => {
   const res = await fetch(`/api/books/${id}`)
   if (res.ok) {
     const detail = await res.json()
-    console.log(detail);
     dispatch(loadDetail(detail));
     return detail;
   } else if (res.status === 401) {

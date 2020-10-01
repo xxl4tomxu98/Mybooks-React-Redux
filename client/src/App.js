@@ -14,6 +14,7 @@ class App extends React.Component {
       <BrowserRouter>
         <nav>
           <ul>
+            <li><NavLink to="/login" activeclass="active">Landing</NavLink></li>
             <li><NavLink to="/signup" activeclass="active">Register</NavLink></li>
             <li><NavLink to="/users" activeclass="active">Users</NavLink></li>
           </ul>
@@ -42,6 +43,7 @@ class App extends React.Component {
                         needLogin={this.props.needLogin}
                         component={BookBrowser}
                         />
+
         </Switch>
       </BrowserRouter>
     )
