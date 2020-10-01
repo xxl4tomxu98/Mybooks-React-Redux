@@ -39,11 +39,28 @@ export class LoginPanel extends Component {
   ghandiQuotes= [
     '"An eye for eye only ends up making the whole world blind."',
     '"Happiness is when what you think, what you say, and what you do are in harmony."',
-    '"Where there is love there is life."'
+    '"Where there is love there is life."',
+    '"In a gentle way, you can shake the world."',
+    '"If you don\'t ask, you don\'t get it."',
+    '"The weak can never forgive. Forgiveness is the attribute of the strong."',
+    '"Nobody can hurt me without my permission."',
+    '"Hate the sin, love the sinner."',
+    '"If we could change ourselves, the tendencies in the world would also change. As a man changes his own nature, so does the attitude of the world change towards him. We need not wait to see what others do."',
+    '"A man is but a product of his thoughts. What he thinks he becomes."',
+    '"A coward is incapable of exhibiting love; it is the prerogative of the brave."',
+    '"Live as if you were to die tomorrow. Learn as if you were to live forever."',
+    '"Service which is rendered without joy helps neither the servant nor the served."',
+    '"Freedom is not worth having if it does not include the freedom to make mistakes."',
+    '"The best way to find yourself is to lose yourself in the service of others."',
+    '"Glory lies in the attempt to reach one’s goal and not in reaching it."',
+    '"To give pleasure to a single heart by a single act is better than a thousand heads bowing in prayer."',
+    '"It’s the action, not the fruit of the action, that’s important. You have to do the right thing. It may not be in your power, may not be in your time, that there’ll be any fruit. But that doesn’t mean you stop doing the right thing. You may never know what results come from your action. But if you do nothing, there will be no result."',
+    '"You may never know what results come of your actions, but if you do nothing, there will be no results."',
+    '"I cannot conceive of a greater loss than the loss of one’s self-respect."',
   ];
 
   randomNumGen = () => {
-    return Math.floor(Math.random() * Math.floor(2))
+    return Math.floor(Math.random() * Math.floor(19))
   }
 
   render() {

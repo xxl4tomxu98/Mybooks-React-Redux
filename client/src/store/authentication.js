@@ -48,7 +48,6 @@ export const login = (email, password) => {
     })
     if(res.ok) {
       const { user } = await res.json();
-      console.log(user);
       dispatch(setUser(user))
     }
   }
@@ -63,7 +62,6 @@ export const signup = (username, email, password) => {
     })
     if(res.ok) {
       const { user } = await res.json();
-      console.log(user);
       dispatch(setUser(user))
     }
   }

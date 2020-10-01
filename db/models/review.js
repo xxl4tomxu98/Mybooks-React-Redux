@@ -6,8 +6,8 @@ module.exports = (sequelize, DataTypes) => {
     bookId: DataTypes.INTEGER
   }, {});
   Review.associate = function(models) {
-    Review.belongsTo(models.User, {foreignKey: 'userId'});
-    Review.belongsTo(models.Book, {foreignKey: 'bookId'});
+    Review.belongsTo(models.User, {foreignKey: 'userId', as: 'userReview' });
+    Review.belongsTo(models.Book, {foreignKey: 'bookId', as: 'bookReview' });
   };
   return Review;
 };

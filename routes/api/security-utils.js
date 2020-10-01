@@ -15,6 +15,7 @@ function generateToken(user) {
 }
 
 function restoreUser(req, res, next) {
+  console.log(req.body)
   const { token } = req.cookies;
   if (!token) {
     return next({ status: 401, message: 'no token' });

@@ -4,6 +4,7 @@ const LOAD = 'Mybooks/Book/LOAD'
 const LOAD_DETAIL = 'Mybooks/Book/LOAD_DETAIL'
 const LOAD_GENRES = 'Mybooks/Book/LOAD_GENRES'
 const FORM_ERRORS = "Mybooks/Book/FORM_ERRORS";
+const LOAD_REVIEWS = "Mybooks/Book/LOAD_REVIEWS"
 
 const load = books => {
   return {
@@ -23,6 +24,13 @@ const loadGenres = genres => {
   return {
     type: LOAD_GENRES,
     genres
+  }
+}
+
+const loadReviews = reviews => {
+  return {
+    type: LOAD_REVIEWS,
+    reviews
   }
 }
 
@@ -49,6 +57,7 @@ export const getDetail = (id) => async dispatch => {
   const res = await fetch(`/api/books/${id}`)
   if (res.ok) {
     const detail = await res.json()
+    console.log(detail);
     dispatch(loadDetail(detail));
     return detail;
   } else if (res.status === 401) {
@@ -71,7 +80,6 @@ export const getGenres = () => async dispatch => {
 
 
 export const createBook = (book) => async dispatch => {
-  console.log(book);
   const res = await fetch('/api/books/', {
     method: "post",
     headers: {
@@ -95,6 +103,41 @@ export const createBook = (book) => async dispatch => {
 };
 
 
+export const createReview = (id, review) => async dispatch => {
+  const res = await fetch(`/api/books/${id}/reviews`, {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(review),
+  });
+  if (res.ok) {
+    dispatch(getReviews(id));
+    return res;
+  } else if (res.status === 401) {
+    dispatch(removeUser());
+    return res;
+  } else if (res.status === 422) {
+    const { errors } = await res.json();
+    dispatch(formErrors(errors));
+    return res;
+  }
+  throw res;
+};
+
+export const getReviews = (id) => async dispatch => {
+  const res = await fetch(`/api/books/${id}/reviews`)
+  if (res.ok) {
+    const bookReviews = await res.json()
+    dispatch(loadReviews(bookReviews));
+    return bookReviews;
+  } else if (res.status === 401) {
+    return dispatch(removeUser());
+  }
+  throw res;
+}
+
+
 const initialState = {
   genres: [],
   errors: [],
@@ -108,6 +151,8 @@ export default function reducer (state=initialState, action) {
       return { ...state, detail: action.detail };
     case LOAD_GENRES:
       return { ...state, genres: action.genres };
+    case LOAD_REVIEWS:
+      return { ...state, reviews: action.reviews };
     case FORM_ERRORS:
       return { ...state, errors: action.errors };
     default:
