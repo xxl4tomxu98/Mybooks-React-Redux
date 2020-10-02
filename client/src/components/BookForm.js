@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getGenres, createBook } from '../store/book';
+import { getGenres } from '../store/book';
 
 class BookForm extends Component {
   constructor(props) {
@@ -30,6 +30,7 @@ class BookForm extends Component {
     e.preventDefault();
     const payload = this.state;
     this.props.handleCreated(payload);
+    this.props.hideForm();
   }
 
   updateProperty = property => e => {
@@ -98,7 +99,6 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => ({
   getGenres: () => dispatch(getGenres()),
-  handleCreated: (payload) => dispatch(createBook(payload))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookForm);

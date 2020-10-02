@@ -5,7 +5,7 @@ import LogoutButton from './LogoutButton';
 import BookDetail from './BookDetail';
 import BookForm from './BookForm';
 import Fab from './Fab';
-import { getBooks } from '../store/book';
+import { getBooks, createBook } from '../store/book';
 
 class BookBrowser extends Component {
   constructor(props) {
@@ -19,11 +19,17 @@ class BookBrowser extends Component {
     this.props.getBooks()
   }
 
-  handleCreated = (book) => {
-    this.setState({
-      showForm: false,
-    });
-    this.props.handleCreated(book)
+  handleCreated = async (book) => {
+    try {
+      const res = await this.props.createBook(book);
+      const data = await res.json();
+      if (res.ok) {
+        this.props.history.push(`/books/${data.id}`);
+        this.setState({
+          showForm: false,
+        });
+      }
+    } catch(e) {}
   }
 
   showForm = () => {
@@ -39,7 +45,7 @@ class BookBrowser extends Component {
   };
 
   render() {
-    const bookId = Number.parseInt(this.props.match.params.bookId);
+
     if (!this.props.books) {
       return null;
     }
@@ -51,9 +57,10 @@ class BookBrowser extends Component {
           {this.props.books.map(book => {
             return (
               <NavLink key={book.title} to={`/books/${book.id}`}>
-                <div className={bookId === book.id ? 'nav-entry is-selected' : 'nav-entry'}>
+                <div className='.navbar__text-logo-div:hover'>
+                {/* <div className={bookId === book.id ? 'nav-entry is-selected' : 'nav-entry'}> */}
                   <div className="container__book-cover book-cover">
-                    <img className='container__book-image' src={`./images/${book.id}.jpg`} alt="bookshelf"/>
+                    <img className='container__book-image' src={`/images/${book.id}.jpg`} alt="bookshelf"/>
                   </div>
                   <div>
                     <div className='container__genres h4'>{book.title}</div>
@@ -86,7 +93,8 @@ const mapStateToProps = state => {
     }
 }
 const mapDispatchToProps = dispatch => ({
-    getBooks: (books) => dispatch(getBooks(books))
+    getBooks: () => dispatch(getBooks()),
+    createBook: (book) => dispatch(createBook(book))
 })
 
 

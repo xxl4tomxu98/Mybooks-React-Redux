@@ -102,6 +102,18 @@ export class LoginPanel extends Component {
             <div className="book-image-container">
               <img className="book-image__3" src="./images/3.jpg" alt=""/>
             </div>
+            <div className="book-image-container">
+              <img className="book-image__4" src="./images/4.jpg" alt=""/>
+            </div>
+            <div className="book-image-container">
+              <img className="book-image__5" src="./images/8.jpg" alt=""/>
+            </div>
+            <div className="book-image-container">
+              <img className="book-image__6" src="./images/6.jpg" alt=""/>
+            </div>
+            <div className="book-image-container">
+              <img className="book-image__7" src="./images/9.jpg" alt=""/>
+            </div>
           </div>
         </>
       );

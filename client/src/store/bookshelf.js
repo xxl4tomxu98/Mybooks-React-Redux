@@ -12,10 +12,10 @@ const loadShelves = shelves => {
   }
 }
 
-const loadShelfDetail = shelfdetail => {
+const loadShelfDetail = detail => {
   return {
     type: LOAD_SHELFDETAIL,
-    shelfdetail
+    detail
   }
 }
 
@@ -47,9 +47,10 @@ export const getShelves = () => async dispatch => {
 export const getShelfDetail = (id) => async dispatch => {
   const res = await fetch(`/api/shelves/${id}`)
   if (res.ok) {
-    const detail = await res.json()
-    dispatch(loadShelfDetail(detail));
-    return detail;
+    const data = await res.json();
+    const bookDetail = data.Books;
+    dispatch(loadShelfDetail(bookDetail));
+    return bookDetail;
   } else if (res.status === 401) {
     return dispatch(removeUser());
   }
@@ -92,16 +93,16 @@ export const deleteShelf = (id) => dispatch => {
 
 
 const initialState = {
-
+  shelfDetail: [],
   errors: [],
 }
 
 export default function reducer (state=initialState, action) {
   switch(action.type){
     case LOAD_SHELVES:
-      return { ...state, list: action.shelves };
+      return { ...state, shelfList: action.shelves };
     case LOAD_SHELFDETAIL:
-      return { ...state, shelfDetail: action.shelfDetail };
+      return { ...state, shelfDetail: action.detail };
     case REMOVE_SHELF:
       return {}
     case FORM_ERRORS:

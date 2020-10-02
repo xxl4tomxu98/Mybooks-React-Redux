@@ -41,6 +41,7 @@ const validateShelf = [
 
 
 router.get("/",
+  authenticated,
   asyncHandler(async (req, res) => {
     try{
       const shelves = await Shelf.findAll({
@@ -49,10 +50,8 @@ router.get("/",
         },
         order: [["createdAt", "DESC"]],
       });
-      const user = await User.findByPk(req.user.id);
-      const username = user.username;
       if(shelves) {
-        res.json({ shelves, username });
+        res.json(shelves);
       } else {
         res.json('no shelves')
       }
@@ -71,7 +70,7 @@ router.get("/:id",
       include: Book
     });
     if (shelf) {
-      res.json({ shelf });
+      res.json(shelf);
     } else {
       next(bookshelfNotFoundError(req.params.id));
     }
@@ -84,7 +83,8 @@ router.post("/",
   asyncHandler(async (req, res) => {
     const { newShelfName } = req.body;
     const bookshelf = await Shelf.create({ name: newShelfName, user_id: req.user.id});
-    return res.json({ bookshelf });
+    const newShelfId = bookshelf.id;
+    return res.json({ newShelfId });
   })
 );
 

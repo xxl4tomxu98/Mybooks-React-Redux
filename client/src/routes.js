@@ -13,7 +13,7 @@ export const PrivateRoute = ({ component: Component, ...rest }) => (
 export const AuthRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => (
     rest.needLogin === false
-      ? <Redirect to='/' />
+      ? <Redirect to='/shelves' />
       : <Component {...props}  />
   )} />
 )

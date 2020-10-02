@@ -73,7 +73,7 @@ router.put('/', [email, password], asyncHandler(async (req, res, next) => {
   await user.save();
   res.cookie('token', token, {
     maxAge: expiresIn * 1000, //maxAge in millisecs
-    httpOnly: true,
+    //httpOnly: true,
     secure: process.env.NODE_ENV === "production",
   });
   res.json({ token, user: user.toSafeObject() });
