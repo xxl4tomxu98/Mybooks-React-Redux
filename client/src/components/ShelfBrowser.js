@@ -23,21 +23,11 @@ class ShelfBrowser extends Component {
     try {
       const res = await this.props.createShelf(shelf);
       const data = await res.json();
-      console.log("data", data)
       if (res.ok) {
         this.props.history.push(`/shelves/${data.id}`);
         this.setState({
           formVisible: false,
         });
-      }
-    } catch(e) {}
-  }
-
-  handleDelete = async (id) => {
-    try {
-      const res = await this.props.deleteShelf(id);
-      if (res.ok) {
-        console.log(res.json().message);
       }
     } catch(e) {}
   }
@@ -65,7 +55,7 @@ class ShelfBrowser extends Component {
 
         <div className='bookshelf-books my-custom-scrollbar my-custom-scrollbar-primary'>
             <div className='welcome-header'>
-              <h1>welcome</h1>
+              <h2>welcome {this.props.username}</h2>
               <h2 className='quote'>
                 “A room without books is like a body without a soul.”
               </h2>
@@ -104,7 +94,8 @@ class ShelfBrowser extends Component {
 
 const mapStateToProps = state => {
     return {
-      shelves: state.bookshelf.shelfList
+      shelves: state.bookshelf.shelfList,
+      username: state.authentication.username,
     }
 }
 const mapDispatchToProps = dispatch => ({

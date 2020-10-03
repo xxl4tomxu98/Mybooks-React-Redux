@@ -77,7 +77,7 @@ export const createShelf = (shelf) => async dispatch => {
     },
     body: JSON.stringify( shelf )
   });
-  console.log(res.ok);
+
   if (res.ok) {
     dispatch(getShelves());
     return res;

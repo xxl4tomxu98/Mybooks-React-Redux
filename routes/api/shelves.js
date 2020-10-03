@@ -62,6 +62,7 @@ router.get("/",
 
 
 router.get("/:id",
+  authenticated,
   asyncHandler(async (req, res, next) => {
     const shelf = await Shelf.findOne({
       where: {
@@ -115,7 +116,7 @@ router.delete(
         await connection.destroy()
       };
       await bookshelf.destroy();
-      res.json({ message: `Deleted bookshelf with id of ${req.params.id}.` });
+      res.json(req.params.id);
     } else {
       next(bookshelfNotFoundError(req.params.id));
     }
@@ -125,6 +126,7 @@ router.delete(
 
 
 router.delete("/:shelfId/books/:bookId",
+  authenticated,
   asyncHandler(async(req, res) => {
     const bookId = req.params.bookId;
     const shelfId = req.params.shelfId;
@@ -161,6 +163,7 @@ router.delete("/:shelfId/books/:bookId",
 
 
 router.post("/:shelfId/books/bookId",
+  authenticated,
   asyncHandler(async (req, res, next) => {
   const bookId = req.params.bookId;
   const shelfId = req.params.shelfId; ;

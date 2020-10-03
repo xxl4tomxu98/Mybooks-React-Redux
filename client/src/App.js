@@ -38,17 +38,25 @@ class App extends React.Component {
                 <UserList />
           </Route>
           <PrivateRoute path="/books"
-                        exact={false}
+                        exact={true}
                         needLogin={this.props.needLogin}
                         component={BookBrowser}
                         />
-
+          <PrivateRoute path="/books/:bookid"
+                        exact={true}
+                        needLogin={this.props.needLogin}
+                        component={BookBrowser}
+                        />
           <PrivateRoute path="/shelves"
-                        exact={false}
+                        exact={true}
                         needLogin={this.props.needLogin}
                         component={ShelfBrowser}
                         />
-
+          <PrivateRoute path="/shelves/:shelfId"
+                        exact={true}
+                        needLogin={this.props.needLogin}
+                        component={ShelfBrowser}
+                        />
         </Switch>
       </BrowserRouter>
     )

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getShelfDetail, deleteShelf } from '../store/bookshelf';
-import { NavLink, Redirect } from 'react-router-dom';
+import { getShelfDetail, deleteShelf, getShelves } from '../store/bookshelf';
+import { NavLink } from 'react-router-dom';
 
 
 class ShelfDetail extends Component {
@@ -19,11 +19,11 @@ class ShelfDetail extends Component {
   }
 
   handleDelete = async (e) => {
-    e.preventDefault();
     try {
       const id = this.props.match.params.id;
       await this.props.deleteShelf(id);
-      return <Redirect to="/shelves" />
+      await this.props.getShelves();
+      this.props.history.push('/shelves');
     } catch(e) {}
   }
 
@@ -63,7 +63,8 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => ({
   getShelfDetail: (id) => dispatch(getShelfDetail(id)),
-  deleteShelf: (id) => dispatch(deleteShelf(id))
+  deleteShelf: (id) => dispatch(deleteShelf(id)),
+  getShelves: () => dispatch(getShelves()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShelfDetail);
