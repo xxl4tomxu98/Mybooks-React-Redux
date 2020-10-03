@@ -20,7 +20,6 @@ class App extends React.Component {
             <li><NavLink to="/users" activeclass="active">Users</NavLink></li>
             <li><NavLink to="/shelves" activeclass="active">My Shelves</NavLink></li>
             <li><NavLink to="/books" activeclass="active">My Books</NavLink></li>
-
           </ul>
         </nav>
         <Switch>

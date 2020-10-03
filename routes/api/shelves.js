@@ -1,7 +1,7 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const { check, validationResult } = require('express-validator');
-const { User, Book, Shelf, Book_Shelf } = require('../../db/models');
+const { check } = require('express-validator');
+const { Book, Shelf, Book_Shelf } = require('../../db/models');
 const { authenticated } = require('./security-utils');
 
 const router = express.Router();
@@ -130,7 +130,6 @@ router.delete("/:shelfId/books/:bookId",
   asyncHandler(async(req, res) => {
     const bookId = req.params.bookId;
     const shelfId = req.params.shelfId;
-
     const book = await Book.findByPk(bookId);
     const shelf = await Shelf.findByPk(shelfId, {
       include: Book
@@ -158,7 +157,7 @@ router.delete("/:shelfId/books/:bookId",
 
     await bookOnShelf.destroy();
 
-    res.json({ message: `Removed ${book.title} by ${book.author} from your bookshelf, ${bookshelf.name}` });
+    res.json({ message: `Removed ${book.title} by ${book.author} from your bookshelf, ${shelf.name}` });
   }));
 
 

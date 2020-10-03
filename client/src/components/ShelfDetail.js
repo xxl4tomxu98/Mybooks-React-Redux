@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getShelfDetail, deleteShelf, getShelves } from '../store/bookshelf';
+import { getShelfDetail, deleteShelf, deleteBook, getShelves } from '../store/bookshelf';
 import { NavLink } from 'react-router-dom';
 
 
@@ -27,15 +27,27 @@ class ShelfDetail extends Component {
     } catch(e) {}
   }
 
+  handleRemove = async (e) => {
+    try {
+      const shelfId = this.props.match.params.id;
+      const bookId = e.target.id;
+      await this.props.deleteBook(shelfId, bookId);
+      await this.props.getShelfDetail(shelfId);
+      this.props.history.push(`/shelves/${shelfId}`);
+    } catch(e) {}
+  }
+
   render() {
     const shelfDetail = this.props.shelfDetail;
+    const shelfName = this.props.shelfName;
     if (!shelfDetail) {
       return null;
     }
     return (
       <div className="book-on-shelf">
-        <div>
-          <button type='delete' name='deleteShlef' onClick={this.handleDelete}>delete shelf</button>
+        <div className='bookshelf-title'>
+          <h4>{shelfName}</h4>
+          <button type='delete' name='deleteShlef' className='button-light profile-button' onClick={this.handleDelete}>x</button>
         </div>
 
         <nav>
@@ -44,7 +56,10 @@ class ShelfDetail extends Component {
               <NavLink key={`${book.id}-${book.title}`} to={`/books/${book.id}`}>
                 <div className='book-image-container bookshelf-books'>
                   <img className='book-image__1' src={`/images/${book.id}.jpg`} alt="bookshelf"/>
-                  <h5 className="book-on-shelf__book-title a">{book.title}</h5>
+                  <div className="book-on-shelf__book-title a">
+                    <h5 >{book.title}</h5>
+                    <button type='delete' id={`${book.id}`} name='removeBook' className='button-light profile-button' onClick={this.handleRemove}>x</button>
+                  </div>
                 </div>
               </NavLink>
             );
@@ -57,13 +72,14 @@ class ShelfDetail extends Component {
 
 const mapStateToProps = state => {
   return {
-    shelfDetail: state.bookshelf.shelfDetail,
-    shelfList: state.bookshelf.shelfList,
+    shelfDetail: state.bookshelf.shelfDetail.Books,
+    shelfName: state.bookshelf.shelfDetail.name,
   }
 }
 const mapDispatchToProps = dispatch => ({
   getShelfDetail: (id) => dispatch(getShelfDetail(id)),
   deleteShelf: (id) => dispatch(deleteShelf(id)),
+  deleteBook: (shelfId, bookId) => dispatch(deleteBook(shelfId, bookId)),
   getShelves: () => dispatch(getShelves()),
 })
 
