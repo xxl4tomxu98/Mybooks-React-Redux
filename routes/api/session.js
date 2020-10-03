@@ -43,7 +43,7 @@ router.post(
     await user.save();
     res.cookie('token', token, {
       maxAge: expiresIn * 1000, //maxAge in millisecs
-      httpOnly: true,
+      //httpOnly: true,
       secure: process.env.NODE_ENV === "production",
     });
     res.json({ token, user: user.toSafeObject() });
@@ -58,9 +58,7 @@ router.put('/', [email, password], asyncHandler(async (req, res, next) => {
     return next({ status: 422, errors: errors.array() });
   }
   const { email, password } = req.body;
-
   const user = await UserRepository.findByEmail(email);
-
   if (!user.isValidPassword(password)) {
     const err = new Error('Login failed');
     err.status = 401;

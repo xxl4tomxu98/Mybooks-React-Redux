@@ -17,7 +17,7 @@ class ShelfForm extends Component {
     e.preventDefault();
     const payload = this.state;
     this.props.handleCreated(payload);
-    this.props.hideform();
+    this.props.hideForm();
   }
 
   updateProperty = property => e => {
@@ -42,18 +42,12 @@ class ShelfForm extends Component {
         <form onSubmit={this.handleSubmit}>
           <ul>{this.renderErrors()}</ul>
           <input type='text'
-            class='input-field input-field__add-bookshelf hidden'
+            className='input-field input-field__add-bookshelf hidden'
             name='newShelfName'
             onChange={this.updateName}
             value={this.state.name}
             placeholder="create a shelf"/>
           <input type="submit" value="" style={{display: 'none'}} />
-          <button type='button'
-            class='button-light buttonButton'
-            id='add-new-bookshelf__button'
-            hidden={this.props.hidden}
-            onClick={this.props.showForm}>add shelf
-          </button>
         </form>
       </section>
     );

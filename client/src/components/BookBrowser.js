@@ -63,7 +63,7 @@ class BookBrowser extends Component {
                     <img className='container__book-image' src={`/images/${book.id}.jpg`} alt="bookshelf"/>
                   </div>
                   <div>
-                    <div className='container__genres h4'>{book.title}</div>
+                    <div className='container__genres container__genres h4'>{book.title}</div>
                     <div className='bookpage-container__book-info__author'>Author: {book.author}</div>
                   </div>
                 </div>

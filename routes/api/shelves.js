@@ -79,18 +79,19 @@ router.get("/:id",
 
 
 router.post("/",
+  authenticated,
   validateShelf,
   asyncHandler(async (req, res) => {
-    const { newShelfName } = req.body;
-    const bookshelf = await Shelf.create({ name: newShelfName, user_id: req.user.id});
-    const newShelfId = bookshelf.id;
-    return res.json({ newShelfId });
+    const bookshelf = await Shelf.create({ name: req.body.name, userId: req.user.id});
+    const id = bookshelf.id;
+    return res.json({ id });
   })
 );
 
 
 router.delete(
   "/:id",
+  authenticated,
   asyncHandler(async (req, res, next) => {
     const bookshelf = await Shelf.findOne({
       where: {
@@ -115,7 +116,6 @@ router.delete(
       };
       await bookshelf.destroy();
       res.json({ message: `Deleted bookshelf with id of ${req.params.id}.` });
-      res.redirect('/myShelves');
     } else {
       next(bookshelfNotFoundError(req.params.id));
     }
@@ -123,5 +123,55 @@ router.delete(
 );
 
 
+
+router.delete("/:shelfId/books/:bookId",
+  asyncHandler(async(req, res) => {
+    const bookId = req.params.bookId;
+    const shelfId = req.params.shelfId;
+
+    const book = await Book.findByPk(bookId);
+    const shelf = await Shelf.findByPk(shelfId, {
+      include: Book
+    });
+
+    // const updatedBooks = await Book.findAll({
+    //   where: {
+    //     [Op.not]: {
+    //       id: bookId
+    //     }
+    //   },
+    //   include: { model: Shelf,
+    //     where: {
+    //       id: shelfId,
+    //     }
+    //   },
+    // });
+
+    const bookOnShelf = await Book_Shelf.findOne({
+      where: {
+        bookId: bookId,
+        shelfId: shelfId
+      }
+    });
+
+    await bookOnShelf.destroy();
+
+    res.json({ message: `Removed ${book.title} by ${book.author} from your bookshelf, ${bookshelf.name}` });
+  }));
+
+
+router.post("/:shelfId/books/bookId",
+  asyncHandler(async (req, res, next) => {
+  const bookId = req.params.bookId;
+  const shelfId = req.params.shelfId; ;
+  const bookshelf = await Shelf.findByPk(shelfId);
+  const book = await Book.findByPk(bookId)
+  if (bookshelf) {
+    await bookshelf.addBook(book);
+    res.json(shelfId, bookId);
+  } else {
+    next(bookshelfNotFoundError(req.params.shelfId));
+  };
+}));
 
 module.exports = router;
