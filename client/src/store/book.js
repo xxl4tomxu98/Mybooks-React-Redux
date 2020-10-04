@@ -5,6 +5,8 @@ const LOAD_DETAIL = 'Mybooks/Book/LOAD_DETAIL'
 const LOAD_GENRES = 'Mybooks/Book/LOAD_GENRES'
 const FORM_ERRORS = "Mybooks/Book/FORM_ERRORS";
 const LOAD_REVIEWS = "Mybooks/Book/LOAD_REVIEWS"
+const LOAD_NONCONTAINING_SHELVES = 'Mybooks/BOOK/LOAD_NONCONTAINING_SHELVES'
+
 
 const load = books => {
   return {
@@ -33,6 +35,16 @@ const loadReviews = reviews => {
     reviews
   }
 }
+
+const loadNonContainingShelves = shelves => {
+  return {
+    type: LOAD_NONCONTAINING_SHELVES,
+    shelves
+  }
+}
+
+
+
 
 const formErrors = (errors) => {
   return {
@@ -137,7 +149,22 @@ export const getReviews = (id) => async dispatch => {
 }
 
 
+export const getNonContainingShelves = (id) => async dispatch => {
+  const res = await fetch(`/api/books/${id}/shelves`)
+  if (res.ok) {
+    const data = await res.json();
+    dispatch(loadNonContainingShelves(data));
+    return data;
+  } else if (res.status === 401) {
+    return dispatch(removeUser());
+  }
+  throw res;
+}
+
+
+
 const initialState = {
+  openShelves: [],
   genres: [],
   errors: [],
 }
@@ -151,7 +178,11 @@ export default function reducer (state=initialState, action) {
     case LOAD_GENRES:
       return { ...state, genres: action.genres };
     case LOAD_REVIEWS:
-      return { ...state, reviews: action.reviews };
+      const newState = { ...state };
+      newState.detail.reviews = [...newState.detail.reviews, ...action.reviews];
+      return newState;
+    case LOAD_NONCONTAINING_SHELVES:
+      return { ...state, openShelves: action.shelves };
     case FORM_ERRORS:
       return { ...state, errors: action.errors };
     default:

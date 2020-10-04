@@ -5,12 +5,19 @@ const LOAD_SHELFDETAIL = 'Mybooks/SHELF/LOAD_SHELFDETAIL'
 const REMOVE_SHELF = 'MYBOOKS/SHELF/REMOVE_SHELF'
 const FORM_ERRORS = "Mybooks/SHELF/FORM_ERRORS";
 const REMOVE_BOOK = 'MYBOOKS/SHELF/REMOVE_BOOK'
-
+const LOAD_BOOK_TO_SHELF = 'Mybooks/SHELF/LOAD_BOOK_TO_SHELF'
 
 const loadShelves = shelves => {
   return {
     type: LOAD_SHELVES,
     shelves
+  }
+}
+
+const loadBookToShelf = (book) => {
+  return {
+    type: LOAD_BOOK_TO_SHELF,
+    book
   }
 }
 
@@ -56,6 +63,9 @@ export const getShelves = () => async dispatch => {
   throw res;
 }
 
+
+
+
 export const getShelfDetail = (id) => async dispatch => {
   const res = await fetch(`/api/shelves/${id}`)
   if (res.ok) {
@@ -93,6 +103,21 @@ export const createShelf = (shelf) => async dispatch => {
   throw res;
 };
 
+export const addBookToShelf = (bookId, shelfId) => async dispatch => {
+  const res = await fetch(`/api/shelves/${shelfId}/books/${bookId}/`);
+  if (res.ok) {
+    dispatch(loadBookToShelf(res.json()));
+    return res;
+  } else if (res.status === 401) {
+    dispatch(removeUser());
+    return res;
+  } else if (res.status === 422) {
+    const { errors } = await res.json();
+    dispatch(formErrors(errors));
+    return res;
+  }
+  throw res;
+};
 
 
 export const deleteShelf = (id) =>  async dispatch => {
@@ -141,6 +166,10 @@ export default function reducer (state=initialState, action) {
       const newState = { ...state };
       newState.shelfDetail.Books=newState.shelfDetail.Books.filter(book => book.id !== action.bookId);
       return newState;
+    case LOAD_BOOK_TO_SHELF:
+      const afterState = { ...state };
+      afterState.shelfDetail.Books.push(action.book);
+      return afterState;
     case FORM_ERRORS:
       return { ...state, errors: action.errors };
     default:

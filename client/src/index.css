@@ -382,6 +382,57 @@ body{
   width: 150px;
 }
 
+.add-to-bookshelf-dropdown {
+  color: #576169;
+  border-radius: 3px;
+  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, .25);
+  margin-top: 5px;
+  font-weight: 200;
+  background-color: rgba(255,255,255, .8) ;
+  float: left;
+  width: 150;
+}
+
+.add-to-bookshelf-dropdown__option {
+  color: rgba(0,0,0,.70);
+  background-color: whitesmoke;
+}
+
+
+.drop-down-form {
+  display: inline-block;
+  height: 28px;
+  color: gray;
+
+  }
+
+
+  .drop-down-form__button {
+  height: 28px;
+  font-size: 15px;
+  margin-left: 15px;
+  padding: 0 10px;
+  }
+
+  .drop-down {
+  font-size: 15px;
+  height: 28px;
+  border-radius: 5px;
+  }
+
+  #drop-down-form__select {
+    font-size: 12px;
+    height: 23px;
+    border-radius: 5px;
+  }
+
+  #drop-down-form__button {
+    height: 20px;
+    font-size: 12px;
+    padding: 0 10px;
+    margin-left: 20px;
+  }
+
 /*Starting shelf page*/
 .wrapper{
   display: grid;

@@ -4,6 +4,7 @@ const { check, validationResult } = require('express-validator');
 const { genres } = require('../../db/models/genre');
 const { authenticated } = require('./security-utils');
 const BookRepository = require('../../db/book-repository');
+const { Book, Shelf } = require('../../db/models');
 const router = express.Router();
 
 const title = check('title').notEmpty();
@@ -85,6 +86,55 @@ router.get('/:id/reviews',
     const {reviews} = book;
     res.json(reviews);
 }));
+
+
+router.get("/:bookid/shelves",
+  authenticated,
+  asyncHandler(async (req, res) => {
+    //get all the open shelves where the book is not currently on
+    const bookId = req.params.bookid;
+    //all shelves for the user that have the specified book
+    const shelves = await Shelf.findAll({
+      where: {
+        userId : req.user.id,
+      },
+      include: {
+        model: Book, where: {
+          id: bookId
+        }
+      }
+    });
+
+    //all shelves in db for the user
+    const allShelves = await Shelf.findAll({
+      where: {
+        userId: req.user.id
+      }
+    });
+    //shelf id's for all user shelves with specific book
+    let includedShelf = [];
+    for (let shelf of shelves) {
+      includedShelf.push(shelf.id);
+    };
+    //array of all shelves in db
+    let allShelvesArray = [];
+    for (let shelf of allShelves) {
+      allShelvesArray.push(shelf);
+    };
+
+    //filters array for all shelves in db to have all
+    //shelves that don't contain the book already
+    const allShelvesWithoutBook = allShelvesArray.filter(function(shelf) {
+      if (!includedShelf.includes(shelf.id)) {
+        return shelf;
+      }
+    });
+      //return as an obj containing the filtered array of objects
+    res.json(allShelvesWithoutBook);
+}));
+
+
+
 
 
 

@@ -161,7 +161,7 @@ router.delete("/:shelfId/books/:bookId",
   }));
 
 
-router.post("/:shelfId/books/bookId",
+router.get("/:shelfId/books/:bookId",
   authenticated,
   asyncHandler(async (req, res, next) => {
   const bookId = req.params.bookId;
@@ -170,10 +170,12 @@ router.post("/:shelfId/books/bookId",
   const book = await Book.findByPk(bookId)
   if (bookshelf) {
     await bookshelf.addBook(book);
-    res.json(shelfId, bookId);
+    res.json(book);
   } else {
     next(bookshelfNotFoundError(req.params.shelfId));
   };
 }));
+
+
 
 module.exports = router;
