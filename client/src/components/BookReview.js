@@ -65,7 +65,7 @@ class BookReview extends Component {
 
 const mapStateToProps = state => {
   return {
-    reviews: state.book.reviews,
+    reviews: state.book.detail.reviews,
   }
 }
 const mapDispatchToProps = dispatch => ({
