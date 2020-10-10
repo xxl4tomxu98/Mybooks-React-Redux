@@ -1,6 +1,7 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
+import NavBar from './components/NavBar';
 import LoginPanel from './components/LoginPanel';
 import SignupForm from './components/SignupForm';
 import BookBrowser from './components/BookBrowser';
@@ -11,17 +12,13 @@ import { PrivateRoute, AuthRoute } from "./routes";
 
 class App extends React.Component {
   render() {
+
     return (
       <BrowserRouter>
-        <nav>
-          <ul>
-            <li><NavLink to="/login" activeclass="active">Login</NavLink></li>
-            <li><NavLink to="/signup" activeclass="active">Register</NavLink></li>
-            <li><NavLink to="/users" activeclass="active">Users</NavLink></li>
-            <li><NavLink to="/shelves" activeclass="active">My Shelves</NavLink></li>
-            <li><NavLink to="/books" activeclass="active">My Books</NavLink></li>
-          </ul>
-        </nav>
+
+        {this.props.path !== '/login' && this.props.path !== '/signup' ?
+            <NavBar />
+            : null}
         <Switch>
           <AuthRoute path="/signup"
               exact={true}

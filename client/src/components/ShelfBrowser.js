@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import LogoutButton from './LogoutButton';
 import ShelfDetail from './ShelfDetail';
 import ShelfForm from './ShelfForm';
 import Fab from './Fab';
@@ -51,8 +50,7 @@ class ShelfBrowser extends Component {
     }
     return (
       <main className='wrapper'>
-        <LogoutButton />
-
+        {/* <LogoutButton /> replaced by NavBar AuthNavButton */}
         <div className='bookshelf-books my-custom-scrollbar my-custom-scrollbar-primary'>
             <div className='welcome-header'>
               <h2>welcome {this.props.username}</h2>

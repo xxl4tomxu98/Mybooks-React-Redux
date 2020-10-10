@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { login } from '../store/authentication';
+import SignupForm from './SignupForm';
 
 const mapStateToProps = state => {
   return {
@@ -87,6 +88,7 @@ export class LoginPanel extends Component {
               <button type="submit">Login</button>
             </form>
           </div>
+          <SignupForm />
           <div className="quote-generator-container">
             <img className="quote-generator-img" src="./images/ghandi.jpg" alt="" />
             <p className="quote-generator-quote"> {this.ghandiQuotes[this.randomNumGen()] + '   -Ghandi'} </p>

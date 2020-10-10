@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import LogoutButton from './LogoutButton';
 import BookDetail from './BookDetail';
 import BookForm from './BookForm';
 import Fab from './Fab';
@@ -51,7 +50,7 @@ class BookBrowser extends Component {
     }
     return (
       <main className='book-container'>
-        <LogoutButton />
+        {/* <LogoutButton /> handled by AuthNavButtons*/}
         <nav>
           <Fab hidden={this.state.showForm} onClick={this.showForm} />
           {this.props.books.map(book => {
