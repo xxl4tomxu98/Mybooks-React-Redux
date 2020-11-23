@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import SearchPage from './SearchPage';
 
 const SearchBarWrapper = styled.div`
   box-sizing: border-box;
@@ -53,20 +54,48 @@ const SearchBarWrapper = styled.div`
 `;
 
 const SearchBar = () => {
-  return (
-    <SearchBarWrapper>
-      <form>
-        <input
-          type="text"
-          name="search"
-          placeholder="Find your favorite books"
-        />
-        <span className="icon">
-          <svg width="16px" height="16px" viewBox="0 0 24 24"><g id="search" stroke="#666" strokeWidth="1.5" fill="none" fillRule="evenodd" strokeLinecap="round" strokeLinejoin="round"><path d="M10.5,18 C6.35786438,18 3,14.6421356 3,10.5 C3,6.35786438 6.35786438,3 10.5,3 C14.6421356,3 18,6.35786438 18,10.5 C18,14.6421356 14.6421356,18 10.5,18 Z M20.9497475,20.9497475 L16,16 L20.9497475,20.9497475 Z"></path></g></svg>
-        </span>
-      </form>
-    </SearchBarWrapper>
-  );
+    const [term, setTerm] = useState([]);
+    const [bookData, setBookData] = useState([]);
+    const updateTerm = (e) => {
+      setTerm(e.target.value);
+    }
+
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      searchBooks();
+    }
+
+    async function searchBooks() {
+        const res = await fetch("/api/books/search");
+        if (res.ok) {
+          const data = await res.json()
+          setBookData(data.books);
+          return data.books
+        }
+    }
+
+    return (
+      <>
+        <SearchBarWrapper>
+          <form onSubmit={handleSubmit}>
+            <input
+              onChange={updateTerm}
+              type="text"
+              name="search"
+              value={term}
+              placeholder="Find your favorite books"
+            />
+            <input type="submit" value="" style={{display: 'none'}} />
+            <span className="icon">
+              <svg width="16px" height="16px" viewBox="0 0 24 24"><g id="search" stroke="#666" strokeWidth="1.5" fill="none" fillRule="evenodd" strokeLinecap="round" strokeLinejoin="round"><path d="M10.5,18 C6.35786438,18 3,14.6421356 3,10.5 C3,6.35786438 6.35786438,3 10.5,3 C14.6421356,3 18,6.35786438 18,10.5 C18,14.6421356 14.6421356,18 10.5,18 Z M20.9497475,20.9497475 L16,16 L20.9497475,20.9497475 Z"></path></g></svg>
+            </span>
+          </form>
+        </SearchBarWrapper>
+        <div >
+            <SearchPage data={bookData} />
+        </div>
+      </>
+    );
 };
 
 export default SearchBar;

@@ -20,6 +20,37 @@ const errorFormatter = ({ msg, param }) => {
 };
 
 
+//when user goes to /books with or without a search term logic
+router.get('/search', asyncHandler(async (req, res) => {
+  const { term } = req.query;
+  let books;
+  if (term) {
+    try {
+      books = await Book.findAll({
+        where: {
+          [Op.or]: [
+            { title: { [Op.iLike]: `%${term}%` } },
+            { author: { [Op.iLike]: `%${term}%` } }
+          ]
+        },
+        order: [['title', 'ASC']]
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  } else {
+    books = await Book.findAll({
+      limit: 30,
+      order: [['title', 'ASC']]
+    })
+  }
+  //const searchTitle = `Search result for "${term}"`
+  //res.render('searchpage', { books, searchTitle });
+  res.json(books);
+}))
+
+
+
 
 router.get('/',
   authenticated,

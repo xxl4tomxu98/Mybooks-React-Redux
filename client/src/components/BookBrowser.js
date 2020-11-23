@@ -91,6 +91,7 @@ const mapStateToProps = state => {
       books: state.book.list
     }
 }
+
 const mapDispatchToProps = dispatch => ({
     getBooks: () => dispatch(getBooks()),
     createBook: (book) => dispatch(createBook(book))
