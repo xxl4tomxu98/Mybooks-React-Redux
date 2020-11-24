@@ -438,7 +438,7 @@ body{
   display: grid;
   grid-template-columns: 1fr 4fr;
   width: 800px;
-  grid-template-rows: 70px 300px 100px 500px;
+  grid-template-rows: 200px 300px 100px 500px;
   margin: auto;
   margin-top: 50px;
 }
@@ -457,7 +457,7 @@ h1#welcome {
 
 .bookshelf-title {
   grid-column: 2;
-  grid-row: 1;
+  grid-row: 2;
   display: flex;
   align-items: flex-end;
   padding-left: 30px;
@@ -469,7 +469,7 @@ h1#welcome {
 
 .bookshelf-books {
   grid-column: 2;
-  grid-row: 2;
+  grid-row: 3;
   display: flex;
   overflow-y: scroll;
   position: relative;
@@ -497,13 +497,13 @@ h1#welcome {
   /* margin-top: 20px; */
   /* margin-left: 30px; */
   grid-column: 2;
-  grid-row: 3;
+  grid-row: 4;
 }
 
 .bookshelf-books__book-description {
   /* background-color:lightgrey; */
   grid-column: 2;
-  grid-row: 4;
+  grid-row: 5;
   margin-top: 50px;
   margin-left: 30px;
 }

@@ -49,43 +49,42 @@ class ShelfBrowser extends Component {
       return null;
     }
     return (
-      <main className='wrapper'>
-        {/* <LogoutButton /> replaced by NavBar AuthNavButton */}
-        <div className='bookshelf-books my-custom-scrollbar my-custom-scrollbar-primary'>
-            <div className='welcome-header'>
-              <h2>welcome {this.props.username}</h2>
-              <h2 className='quote'>
-                “A room without books is like a body without a soul.”
-              </h2>
-              <h3 className='quote'>author ― Marcus Tullius Cicero</h3>
-            </div>
-        </div>
-        <nav className='side-bar'>
-          {this.props.shelves.map(shelf => {
-            return (
-              <NavLink key={shelf.name} to={`/shelves/${shelf.id}`}>
-                <div className='bookshelf-list-item:hover bookshelf-list-item--active'>
-                  <div className='bookshelf-title'>{shelf.name}</div>
-                </div>
-              </NavLink>
-            );
-          })}
-        </nav>
-        { this.state.formVisible ? (
-            <ShelfForm
-              handleCreated={this.handleCreated}
-              hideForm={this.hideForm}
-            />
-          ) : (
-            <>
-              <Route path="/shelves/:id" render={props =>
-                <ShelfDetail  {...props} />
-              } />
-              <Fab hidden={this.state.showForm} onClick={this.showForm} />
-            </>
-          )
-        }
-      </main>
+        <main className='wrapper'>
+            {/* <div className='bookshelf-books my-custom-scrollbar my-custom-scrollbar-primary'> */}
+              <div className='welcome-header'>
+                <h2>welcome {this.props.username}</h2>
+                <h2 className='quote'>
+                  “A room without books is like a body without a soul.”
+                </h2>
+                <h3 className='quote'>author ― Marcus Tullius Cicero</h3>
+              </div>
+            {/* </div> */}
+            <nav className='side-bar'>
+              {this.props.shelves.map(shelf => {
+                return (
+                  <NavLink key={shelf.name} to={`/shelves/${shelf.id}`}>
+                    <div className='bookshelf-list-item:hover bookshelf-list-item--active'>
+                      <div className='bookshelf-title'>{shelf.name}</div>
+                    </div>
+                  </NavLink>
+                );
+              })}
+            </nav>
+            { this.state.formVisible ? (
+                <ShelfForm
+                  handleCreated={this.handleCreated}
+                  hideForm={this.hideForm}
+                />
+              ) : (
+                <>
+                  <Route path="/shelves/:id" render={props =>
+                    <ShelfDetail  {...props} />
+                  } />
+                  <Fab hidden={this.state.showForm} onClick={this.showForm} />
+                </>
+              )
+            }
+        </main>
     );
   }
 }

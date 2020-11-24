@@ -21,7 +21,7 @@ const errorFormatter = ({ msg, param }) => {
 
 
 //when user goes to /books with or without a search term logic
-router.get('/search', asyncHandler(async (req, res) => {
+router.get('/', asyncHandler(async (req, res) => {
   const { term } = req.query;
   let books;
   if (term) {
@@ -52,12 +52,12 @@ router.get('/search', asyncHandler(async (req, res) => {
 
 
 
-router.get('/',
-  authenticated,
-  asyncHandler(async function(_req, res) {
-    const books = await BookRepository.list();
-    res.json(books);
-}));
+// router.get('/',
+//   authenticated,
+//   asyncHandler(async function(_req, res) {
+//     const books = await BookRepository.list();
+//     res.json(books);
+// }));
 
 
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import SearchPage from './SearchPage';
+import { getBooks } from '../store/book';
+import { useDispatch } from 'react-redux';
 
 const SearchBarWrapper = styled.div`
   box-sizing: border-box;
@@ -55,24 +56,17 @@ const SearchBarWrapper = styled.div`
 
 const SearchBar = () => {
     const [term, setTerm] = useState([]);
-    const [bookData, setBookData] = useState([]);
+    const dispatch = useDispatch();
     const updateTerm = (e) => {
-      setTerm(e.target.value);
+        setTerm(e.target.value);
     }
 
     const handleSubmit = (e) => {
-      e.preventDefault();
-      searchBooks();
+        e.preventDefault();
+        dispatch(getBooks());
     }
 
-    async function searchBooks() {
-        const res = await fetch("/api/books/search");
-        if (res.ok) {
-          const data = await res.json()
-          setBookData(data.books);
-          return data.books
-        }
-    }
+
 
     return (
       <>
@@ -91,9 +85,9 @@ const SearchBar = () => {
             </span>
           </form>
         </SearchBarWrapper>
-        <div >
+        {/* <div >
             <SearchPage data={bookData} />
-        </div>
+        </div> */}
       </>
     );
 };

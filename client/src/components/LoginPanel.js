@@ -95,8 +95,8 @@ export class LoginPanel extends Component {
           </div>
           <div className="discover-container">
             <p> Discover... </p>
-            <SearchBar/>
-            {/* <div className="book-image-container">
+
+            <div className="book-image-container">
               <img className="book-image__1" src="./images/1.jpg" alt=""/>
             </div>
             <div className="book-image-container">
@@ -116,7 +116,7 @@ export class LoginPanel extends Component {
             </div>
             <div className="book-image-container">
               <img className="book-image__7" src="./images/9.jpg" alt=""/>
-            </div> */}
+            </div>
           </div>
         </>
       );
