@@ -68,7 +68,7 @@ const SearchBar = () => {
     }
 
     const searchBooks = async (term) => {
-        const res = await fetch(`/api/books/${term}`)
+        const res = await fetch(`/api/books/search/${term}`)
         if (res.ok) {
             const data = await res.json();
             history.push({

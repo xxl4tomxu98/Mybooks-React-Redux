@@ -23,7 +23,7 @@ const errorFormatter = ({ msg, param }) => {
 
 
 //when user goes to /books with or without a search term logic
-router.get('/:term', asyncHandler(async (req, res) => {
+router.get('/search/:term', asyncHandler(async (req, res) => {
   //const { term } = req.query;
   let term = req.params.term;
   let books;
