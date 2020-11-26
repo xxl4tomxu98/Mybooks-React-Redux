@@ -7,7 +7,7 @@ import SignupForm from './components/SignupForm';
 import BookBrowser from './components/BookBrowser';
 import ShelfBrowser from './components/ShelfBrowser';
 import UserList from './components/UsersList';
-
+import SearchPage from './components/SearchPage';
 
 
 
@@ -40,7 +40,6 @@ function App() {
     let needSignup = useSelector(state => !state.authentication.username);
     return (
       <>
-
         {location.pathname !== '/login' && location.pathname !== '/signup' ?
             <NavBar /> : null}
         <Switch>
@@ -57,6 +56,11 @@ function App() {
           <Route path="/users">
                 <UserList />
           </Route>
+          <Route path="/search"
+              exact={true}
+              needLogin={needLogin}
+              component={SearchPage}/>
+
           <PrivateRoute path="/books"
                         exact={true}
                         needLogin={needLogin}

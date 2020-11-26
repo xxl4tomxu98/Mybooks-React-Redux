@@ -5,6 +5,8 @@ const { genres } = require('../../db/models/genre');
 const { authenticated } = require('./security-utils');
 const BookRepository = require('../../db/book-repository');
 const { Book, Shelf } = require('../../db/models');
+const sequelize = require('sequelize');
+const Op = sequelize.Op;
 const router = express.Router();
 
 const title = check('title').notEmpty();
@@ -21,8 +23,9 @@ const errorFormatter = ({ msg, param }) => {
 
 
 //when user goes to /books with or without a search term logic
-router.get('/', asyncHandler(async (req, res) => {
-  const { term } = req.query;
+router.get('/:term', asyncHandler(async (req, res) => {
+  //const { term } = req.query;
+  let term = req.params.term;
   let books;
   if (term) {
     try {
@@ -52,12 +55,12 @@ router.get('/', asyncHandler(async (req, res) => {
 
 
 
-// router.get('/',
-//   authenticated,
-//   asyncHandler(async function(_req, res) {
-//     const books = await BookRepository.list();
-//     res.json(books);
-// }));
+router.get('/',
+  authenticated,
+  asyncHandler(async function(_req, res) {
+    const books = await BookRepository.list();
+    res.json(books);
+}));
 
 
 

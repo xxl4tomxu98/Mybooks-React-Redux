@@ -70,6 +70,7 @@ export const getDetail = (id) => async dispatch => {
   if (res.ok) {
     const detail = await res.json()
     dispatch(loadDetail(detail));
+    console.log(detail)
     return detail;
   } else if (res.status === 401) {
     return dispatch(removeUser());

@@ -1,31 +1,26 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { NavLink } from 'react-router-dom';
 
-function SearchPage({ data }) {
-    const [searchData, setSearchData] = useState([])
+function SearchPage(props) {
+    const data = props.location.state;
 
-    useEffect(() => {
-        setSearchData(data)
-    }, [data])
-
-    const bookComponents = searchData.map((book) => {
+    const bookComponents = data.map((book) => {
         return (<NavLink key={book.title} to={`/books/${book.id}`}>
-        <div className='.navbar__text-logo-div:hover'>
-        {/* <div className={bookId === book.id ? 'nav-entry is-selected' : 'nav-entry'}> */}
-          <div className="container__book-cover book-cover">
-            <img className='container__book-image' src={`/images/${book.id}.jpg`} alt="bookshelf"/>
+          <div className='.navbar__text-logo-div:hover'>
+              <div className="container__book-cover book-cover">
+                  <img className='container__book-image' src={`/images/${book.id}.jpg`} alt="bookshelf"/>
+              </div>
+              <div>
+                  <div className='container__genres container__genres h4'>{book.title}</div>
+                  <div className='bookpage-container__book-info__author'>Author: {book.author}</div>
+              </div>
           </div>
-          <div>
-            <div className='container__genres container__genres h4'>{book.title}</div>
-            <div className='bookpage-container__book-info__author'>Author: {book.author}</div>
-          </div>
-        </div>
-      </NavLink>)
+        </NavLink>)
     })
 
     return (
         <div className='book-container'>
-            { searchData.length === 0 ? <h3>Sorry books searched couldn't be found</h3> : bookComponents}
+            {data.length === 0 ? <h3>Sorry books searched couldn't be found</h3> : bookComponents}
         </div>
 
     );
