@@ -47,7 +47,7 @@ const AuthNavButtons = () => {
   return (
     <AuthNavButtonsWrapper>
       <NavBarLink
-        path = {'/search'}
+        path = {'/login'}
         text = {'Discover'}
       />
       <button className="button" onClick={handleLogout}>Logout</button>
