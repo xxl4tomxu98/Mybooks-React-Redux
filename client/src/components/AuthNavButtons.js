@@ -41,13 +41,13 @@ const AuthNavButtons = () => {
   }
 
   if (loggedOut) {
-    return <Redirect to="/login" />;
+    return <Redirect to="/" />;
   }
 
   return (
     <AuthNavButtonsWrapper>
       <NavBarLink
-        path = {'/login'}
+        path = {'/users'}
         text = {'Discover'}
       />
       <button className="button" onClick={handleLogout}>Logout</button>

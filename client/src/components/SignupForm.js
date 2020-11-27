@@ -37,7 +37,7 @@ export class SignupForm extends Component {
 
   render() {
     if(this.props.currentUserId !== undefined) {
-      return <Redirect to='/'/>
+      return <Redirect to='/shelves'/>
     }
     return (
       <main className="signup-container">

@@ -6,7 +6,7 @@ import { logout } from '../store/authentication'
 class LogoutButton extends Component {
   render() {
     if (this.props.loggedOut) {
-      return <Redirect to="/login" />;
+      return <Redirect to="/" />;
     }
     return (
       <div id="logout-button-holder">

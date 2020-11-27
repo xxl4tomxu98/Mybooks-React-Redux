@@ -13,9 +13,6 @@ const NavBarButtons = () => {
   return (
     <NavBarButtonsWrapper>
       <NavBarLink
-        path={'/users'}
-        text={"Users"}/>
-      <NavBarLink
         path={'/shelves'}
         text={"Home"}/>
       <NavBarLink

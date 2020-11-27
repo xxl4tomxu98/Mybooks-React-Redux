@@ -16,7 +16,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     return (
       <Route {...rest} render={(props) => (
         needLogin === true
-          ? <Redirect to='/login' />
+          ? <Redirect to='/' />
           : <Component {...props}  />
       )} />
     )
@@ -40,7 +40,7 @@ function App() {
     let needSignup = useSelector(state => !state.authentication.username);
     return (
       <>
-        {location.pathname !== '/login' && location.pathname !== '/signup' ?
+        {location.pathname !== '/' && location.pathname !== '/signup' ?
             <NavBar /> : null}
         <Switch>
           <AuthRoute path="/signup"
@@ -48,7 +48,7 @@ function App() {
               needLogin={needSignup}
               component={SignupForm}
               />
-          <AuthRoute path="/login"
+          <AuthRoute path="/"
               exact={true}
               needLogin={needLogin}
               component={LoginPanel}
