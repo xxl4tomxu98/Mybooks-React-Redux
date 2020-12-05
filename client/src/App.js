@@ -10,7 +10,6 @@ import UserList from './components/UsersList';
 import SearchPage from './components/SearchPage';
 
 
-
 const PrivateRoute = ({ component: Component, ...rest }) => {
     let needLogin = useSelector(state => !state.authentication.id);
     return (
@@ -82,6 +81,7 @@ function App() {
                         component={ShelfBrowser}
                         />
         </Switch>
+
       </>
     )
 }
