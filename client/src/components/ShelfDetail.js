@@ -57,7 +57,7 @@ class ShelfDetail extends Component {
                 <div className='book-image-container bookshelf-books'>
                   <img className='book-image__1' src={`/images/${book.id}.jpg`} alt="bookshelf"/>
                   <div className="book-on-shelf__book-title a">
-                    <h5 >{book.title}</h5>
+                    <h5 > {book.title}</h5>
                     <button type='delete' id={`${book.id}`} name='removeBook' className='button-light profile-button' onClick={this.handleRemove}>x</button>
                   </div>
                 </div>

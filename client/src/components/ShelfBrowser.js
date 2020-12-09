@@ -49,16 +49,14 @@ class ShelfBrowser extends Component {
       return null;
     }
     return (
-        <main className='wrapper'>
-            {/* <div className='bookshelf-books my-custom-scrollbar my-custom-scrollbar-primary'> */}
-              <div className='welcome-header'>
-                <h2>welcome {this.props.username}</h2>
-                <h2 className='quote'>
-                  “A room without books is like a body without a soul.”
-                </h2>
-                <h3 className='quote'>author ― Marcus Tullius Cicero</h3>
-              </div>
-            {/* </div> */}
+        <main className='wrapper' style={{minHeight: "70vh"}}>
+            <div className='welcome-header'>
+              <h2>welcome {this.props.username}</h2>
+              <h2 className='quote'>
+                “A room without books is like a body without a soul.”
+              </h2>
+              <h3 className='quote'>author ― Marcus Tullius Cicero</h3>
+            </div>
             <nav className='side-bar'>
               {this.props.shelves.map(shelf => {
                 return (

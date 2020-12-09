@@ -54,7 +54,6 @@ class BookBrowser extends Component {
     }
     return (
       <main className='book-container'>
-        {/* <LogoutButton /> handled by AuthNavButtons*/}
         <nav>
           <Fab hidden={this.state.showForm} onClick={this.showForm} />
           {this.props.books.map(book => {

@@ -36,9 +36,11 @@ class BookDetail extends Component {
     }
     await this.props.getDetail(newId);
     await this.props.getReviews(newId);
+    await this.props.getNonContainingShelves(newId);
   }
 
   handleSubmit = async (event) => {
+
     event.preventDefault();
     try {
       const bookId = this.props.match.params.id;
@@ -46,8 +48,8 @@ class BookDetail extends Component {
       const shelves = this.props.openShelves;
       const found = shelves.find(shelf => shelf.name === shelfName);
       const shelfId = found.id;
-      await this.props.addBookToShelf(bookId, shelfId);
       await this.props.getShelfDetail(shelfId);
+      await this.props.addBookToShelf(bookId, shelfId);
       this.props.history.push(`/shelves/${shelfId}`);
     } catch(e) {}
   }
@@ -108,7 +110,7 @@ const mapDispatchToProps = dispatch => ({
   getReviews: (id) => dispatch(getReviews(id)),
   getNonContainingShelves: (id) => dispatch(getNonContainingShelves(id)),
   addBookToShelf: (bookId, shelfId) => dispatch(addBookToShelf(bookId, shelfId)),
-  getShelfDetail: (shelfId) => dispatch(getShelfDetail(shelfId))
+  getShelfDetail: (shelfId) => dispatch(getShelfDetail(shelfId)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookDetail);

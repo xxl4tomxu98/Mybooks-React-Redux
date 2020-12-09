@@ -6,7 +6,6 @@
 		text-decoration: none;
 		border-bottom: none;
     position: relative;
-
 	}
 
 		.icon:before {
@@ -88,9 +87,9 @@
 		cursor: default;
 		list-style: none;
     padding-left: 0;
+    margin-top: 20px;
     display: flex;
     justify-content: space-evenly;
-    align-content: center;
     align-items: center;
 	}
 
@@ -109,91 +108,80 @@
 
 /* Footer */
 
-	#footer {
-    background-color: rgba(184, 183, 183, 0.308);;
-		border-top: 0;
-    color: #c0c0c0;
-		overflow: hidden;
-    padding: 2em 0 2em 0;
-    min-height: 10vh;
-
-	}
-
-		#footer .copyright {
-			line-height: 1em;
-			list-style: none;
-			padding: 0;
-		}
-
-			#footer .copyright li {
-				border-left: solid 1px #d4d4d4;
-				display: inline-block;
-				font-size: 0.8em;
-				margin-left: 1em;
-				padding-left: 1em;
-			}
-
-				#footer .copyright li:first-child {
-					border-left: 0;
-					margin-left: 0;
-					padding-left: 0;
-				}
-
-				#footer .copyright li a {
-					color: inherit;
-				}
-
-/* XLarge */
-
-	@media screen and (max-width: 1680px) {
-
-		/* Basic */
-
-			body, input, select, textarea {
-				font-size: 13pt;
-			}
-    }
+#footer {
+  background-color: rgba(184, 183, 183, 0.308);;
+  border-top: 0;
+  overflow: hidden;
+  padding: 2em 0 2em 0;
+  bottom: 0;
+}
 
 
-/* Large */
+a:link {
+    color:skyblue;
+}
 
-	@media screen and (max-width: 1280px) {
+/* visited link */
+a:visited {
+    color: skyblue;
+}
 
-		/* Basic */
+/* Icons */
 
-			body, input, select, textarea {
-				font-size: 11pt;
-			}
-	}
+ul.icons {
+  cursor: default;
+  list-style: none;
+  padding-left: 0;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+ul.icons li {
+  display: inline-block;
+  /* padding: 0 3.5em 0 0; */
+}
+
+ul.icons li:last-child {
+  padding-right: 0 !important;
+}
+
+ul.icons li .icon:before {
+  font-size: 1.5em;
+}
 
 
-
-		/* Footer */
-
-
-          a:link {
-            color: skyblue;
-          }
-
-          /* visited link */
-          a:visited {
-            color:skyblue;
-          }
 
 
 /* XSmall */
 
-	@media screen and (max-width: 480px) {
+@media screen and (max-width: 480px) {
 
-		/* Basic */
+    html, body {
+      min-width: 320px;
+    }
 
-			html, body {
-				min-width: 320px;
-			}
+    body, input, select, textarea {
+      font-size: 12pt;
+    }
+}
 
-			body, input, select, textarea {
-				font-size: 12pt;
-			}
+/* XLarge */
+
+@media screen and (max-width: 1680px) {
+
+    body, input, select, textarea {
+      font-size: 13pt;
+    }
+  }
 
 
-	}
+/* Large */
+
+@media screen and (max-width: 1280px) {
+
+    body, input, select, textarea {
+      font-size: 11pt;
+    }
+}

@@ -1,8 +1,10 @@
+
 body{
   background-color: rgba(184, 183, 183, 0.308);
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  /* padding-bottom:60px; */
+
 }
+
 
 .activeclass {
   font-weight: bold;
@@ -18,7 +20,6 @@ body{
 
 
 
-
 /*Fab button*/
 .fab {
   align-items: center;
@@ -31,7 +32,7 @@ body{
   justify-content: center;
   overflow: hidden;
   position: fixed;
-  left: 200px;
+  right: 150px;
   height: 50px;
   width: 50px;
   transition: box-shadow 0.5s, transform 0.25s;
@@ -439,7 +440,8 @@ body{
   display: grid;
   grid-template-columns: 1fr 4fr;
   width: 800px;
-  grid-template-rows: 200px 300px 100px 500px;
+  /* grid-template-rows: 200px 300px 100px 500px; */
+  grid-auto-rows: minmax(min-content, max-content);
   margin: auto;
   margin-top: 50px;
 }
@@ -472,7 +474,6 @@ h1#welcome {
   grid-column: 2;
   grid-row: 3;
   display: flex;
-  overflow-y: scroll;
   position: relative;
 }
 
@@ -534,7 +535,7 @@ h1#welcome {
 
 
 .book-on-shelf__book-title {
-  font-size: 14px;
+  font-size: 16px;
 }
 
 
@@ -558,7 +559,7 @@ h1#welcome {
   border-radius: 5px;
   color: white;
   padding: 5px 10px;
-  margin: 10px 0px;
+  margin: 5px 5px;
 }
 
 .button-light:hover{
