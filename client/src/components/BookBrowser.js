@@ -18,6 +18,10 @@ class BookBrowser extends Component {
     this.props.getBooks()
   }
 
+  componentDidUpdate = () => {
+    window.scrollTo(0, 0);
+  }
+
   handleCreated = async (book) => {
     try {
       const res = await this.props.createBook(book);

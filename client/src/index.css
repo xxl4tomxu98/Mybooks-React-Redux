@@ -1,7 +1,7 @@
 body{
   background-color: rgba(184, 183, 183, 0.308);
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  padding-bottom:60px;
+  /* padding-bottom:60px; */
 }
 
 .activeclass {
@@ -24,7 +24,7 @@ body{
   align-items: center;
   background-color: orange;
   border-radius: 50px;
-  bottom: 30px;
+  bottom: 170px;
   box-shadow: 0 4px 6px rgb(0, 0, 0, 0.2);
   cursor: pointer;
   display: flex;

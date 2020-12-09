@@ -15,10 +15,10 @@ function UsersList (props) {
 
   const userComponents = users.map((user) => <User key={user.id} user={user} />)
   return (
-    <>
+    <div style={{minHeight: "70vh"}}>
       <h1>User List: </h1>
       {userComponents}
-    </>
+    </div>
   );
 }
 
