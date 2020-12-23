@@ -25,7 +25,7 @@ This is the backend for the Solo React project.
 2. Under Resources click "Find more add-ons" and add the add on called "Heroku Postgres"
 3. Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line)
 4. Run `$ heroku login`
-5. Add heroku as a remote to this git repo `$ heroku git:remote -a <project_name>`
+5. Add heroku as a remote to this git repo `$ heroku git:remote -a mybooks-react-redux`
 6. Push the project to heroku `$ git push heroku master`
 7. Connect to the heroku shell and prepare your database
 
