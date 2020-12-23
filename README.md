@@ -12,8 +12,11 @@ This is the backend for the Solo React project.
 
 5. Run
    * `npm run db:create`
+      npx sequelize-cli db:create
    * `npm run db:migrate`
+      npx sequelize-cli db:migrate
    * `npm run db:seed:all`
+      npx sequelize-cli db:seed:all
    * `npm start`
 
 ## Deploy to Heroku
