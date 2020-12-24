@@ -160,10 +160,11 @@ The Back End `/api/books` route handles the search feature. The searchbar encomp
         }
         throw res;
     }
-'''
+```
 
 The API to route `/api/books`, which accepts a `GET` req with the search term as parameter in the end point, gets extracted. The search term is then use to query all book resources in the db that house the search term in it's title, case insensitive ofcourse.
-'''
+
+```
 /api/books.js
 router.get('/search/:term', asyncHandler(async (req, res) => {
   //const { term } = req.query;
@@ -193,7 +194,7 @@ router.get('/search/:term', asyncHandler(async (req, res) => {
   //res.render('searchpage', { books, searchTitle });
   res.json(books);
 }))
-'''
+```
 
 ## Deploy to Heroku
 
