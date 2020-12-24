@@ -126,6 +126,24 @@ Books can be added to bookshelves two ways: the dropdown from `/user/shelves` pa
 ```
 Note:
   - All the shelves for the user are found first. Then the list of shelves with the book included. That list is then converted to id's which is easier to manage later opposed to the shelf object from the db. The array of id's are then used to filter out all of the bookshelves that include that id by cross referencing them with the original query of all the user bookshelves.
+  - Frontend components/BookDetail.js matches selected shelf name and converted to shelfId for React/Redux treatment
+
+```js
+
+handleSubmit = async (event) => {
+
+    event.preventDefault();
+    try {
+      const bookId = this.props.match.params.id;
+      const shelfName = this.state.selection;
+      const shelves = this.props.openShelves;
+      const found = shelves.find(shelf => shelf.name === shelfName);
+      const shelfId = found.id;
+      await this.props.getShelfDetail(shelfId);
+      await this.props.addBookToShelf(bookId, shelfId);
+      this.props.history.push(`/shelves/${shelfId}`);
+    } catch(e) {}
+  }
 
 
 
@@ -164,7 +182,7 @@ The Back End `/api/books` route handles the search feature. The searchbar encomp
 
 The API to route `/api/books`, which accepts a `GET` req with the search term as parameter in the end point, gets extracted. The search term is then use to query all book resources in the db that house the search term in it's title, case insensitive ofcourse.
 
-```
+```js
 /api/books.js
 router.get('/search/:term', asyncHandler(async (req, res) => {
   //const { term } = req.query;
