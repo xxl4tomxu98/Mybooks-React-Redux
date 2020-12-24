@@ -4,7 +4,7 @@ This is the repository for the Solo React project.
 
 [Live Link](https://mybooks-react-redux.herokuapp.com/)
 
-![My-Books](client/public/webfonts/pic01.jpg)
+![My-Books](client/public/pic01.jpg)
 
 <div align="center">
   <h2>Table of Contents</h2>
@@ -231,6 +231,6 @@ router.get('/search/:term', asyncHandler(async (req, res) => {
 ```
 (You can interact with your database this way as youd like, but beware that `db:drop` should not be run in the heroku environment)
 
-8. Add a `REACT_APP_BASE_URL` config var.  This should be the full URL of your react app: i.e. "https://solo-react.herokuapp.com"
+8. Add a `REACT_APP_BASE_URL` config var.  This should be the full URL of your react app: i.e. "https://mybooks-react-redux.herokuapp.com"
 
 9. profit
