@@ -10,6 +10,7 @@ import UserList from './components/UsersList';
 import SearchPage from './components/SearchPage';
 
 
+
 const PrivateRoute = ({ component: Component, ...rest }) => {
     let needLogin = useSelector(state => !state.authentication.id);
     return (
@@ -52,9 +53,11 @@ function App() {
               needLogin={needLogin}
               component={LoginPanel}
               />
-          <Route path="/users">
-                <UserList />
-          </Route>
+          <Route path="/users"
+              exact={true}
+              needLogin={needLogin}
+              component={UserList}
+              />
           <Route path="/search"
               exact={true}
               needLogin={needLogin}

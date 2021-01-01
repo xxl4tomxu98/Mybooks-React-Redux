@@ -13,6 +13,8 @@ const reducer = combineReducers({
     bookshelf,
 });
 
+const storeEnhancer = composeEnhancers(applyMiddleware(thunk, logger));
+
 const configureStore = initialState => {
     return createStore(
         reducer,
@@ -21,6 +23,5 @@ const configureStore = initialState => {
     );
 };
 
-const storeEnhancer = composeEnhancers(applyMiddleware(thunk, logger));
 
 export default configureStore;
