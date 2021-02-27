@@ -17,7 +17,7 @@ This is the repository for the Solo React project.
 
 ## Technologies
 - Back End
-  - Express Node.js
+  - Express Node.js pg Sequelize
 - Front End
   - JavaScript React Redux Hooks
 
@@ -28,7 +28,7 @@ This is the repository for the Solo React project.
 
 1. Clone this repository
     ```bash
-    git clone`https://github.com/xxl4tomxu98/Badreads.git`
+    git clone`https://github.com/xxl4tomxu98/Mybooks-React-Redux.git`
     ```
 2. Install dependencies (`npm install`)
     ```bash
